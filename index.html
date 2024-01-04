@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="logo_elements_black.png" />
+    <style>
+      body {
+        font-family: 'Soehne';
+        font-size: 13px;
+      }
+
+      @font-face {
+        font-family: 'Soehne';
+        src: url('TestSöhne-Extraleicht.otf') format('opentype');
+        font-weight: normal;
+        font-style: normal;
+      }
+      .title {
+        font-size: 20px;
+      }
+      .large-logo {
+        width: 40px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #272827;
+        color: white;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      .filter-input {
+        width: 100%;
+        padding: 3px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <img class="large-logo" src="logo_elements_black.png" alt="Logo" />
+    <h2 class="title">8020ai+ app | industry selector</h2>
+
+    <table id="data-table">
+      <thead>
+        <tr>
+          <th>
+            industry
+            <select
+              id="industry-filter"
+              onchange="filterTable(0)"
+              class="filter-input"
+            >
+              <option value="">all</option>
+            </select>
+          </th>
+          <th>
+            app
+            <select
+              id="app-filter"
+              onchange="filterTable(1)"
+              class="filter-input"
+            >
+              <option value="">all</option>
+            </select>
+          </th>
+          <th>
+            note
+            <select
+              id="note-filter"
+              onchange="filterTable(2)"
+              class="filter-input"
+            >
+              <option value="">all</option>
+            </select>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr></tr>
+        <tr></tr>
+      </tbody>
+    </table>
+
+    <script>
+      window.onload = function () {
+        fetch('table.csv')
+          .then((response) => response.text())
+          .then((csvText) => {
+            window.tableData = parseCSV(csvText);
+            populateDropdowns(window.tableData);
+          })
+          .catch((error) => console.log(error));
+      };
+
+      function parseCSV(text) {
+        const lines = text
+          .replace(/\r\n/g, '\n')
+          .replace(/\r/g, '\n')
+          .split('\n');
+        const headers = lines[0].split(',').map((header) => header.trim());
+        const data = [];
+        let currentRecord = {};
+        let currentField = '';
+        let inQuotes = false;
+        let fieldIndex = 0;
+
+        for (let i = 1; i < lines.length; i++) {
+          for (let char of lines[i]) {
+            if (char === '"' && inQuotes && currentField.slice(-1) === '"') {
+              currentField = currentField.slice(0, -1) + char;
+            } else if (char === '"' && !inQuotes) {
+              inQuotes = true;
+            } else if (char === '"' && inQuotes) {
+              inQuotes = false;
+            } else if (char === ',' && !inQuotes) {
+              currentRecord[headers[fieldIndex]] = currentField;
+              currentField = '';
+              fieldIndex++;
+            } else {
+              currentField += char;
+            }
+          }
+
+          if (inQuotes) {
+            currentField += '\n';
+          } else {
+            currentRecord[headers[fieldIndex]] = currentField;
+            data.push(currentRecord);
+            currentRecord = {};
+            fieldIndex = 0;
+            currentField = '';
+          }
+        }
+        return data;
+      }
+
+      function populateDropdowns(data) {
+        const industrySet = new Set(data.map((row) => row.industry));
+        const appSet = new Set(data.map((row) => row.app));
+        const noteSet = new Set(data.map((row) => row.note));
+
+        populateDropdown('industry-filter', industrySet);
+        populateDropdown('app-filter', appSet);
+        populateDropdown('note-filter', noteSet);
+      }
+      function populateDropdown(dropdownId, items) {
+        const dropdown = document.getElementById(dropdownId);
+        dropdown.length = 1;
+        items.forEach((item) => {
+          const option = document.createElement('option');
+          option.value = item;
+          option.textContent = item;
+          dropdown.appendChild(option);
+        });
+      }
+
+      function filterTable() {
+        const industryFilter = document
+          .getElementById('industry-filter')
+          .value.toUpperCase();
+        const appFilter = document
+          .getElementById('app-filter')
+          .value.toUpperCase();
+        const noteFilter = document
+          .getElementById('note-filter')
+          .value.toUpperCase();
+
+        const filteredData = window.tableData.filter((row) => {
+          return (
+            (industryFilter === '' ||
+              row.industry.toUpperCase() === industryFilter ||
+              row.industry === 'Across All') &&
+            (appFilter === '' || row.app.toUpperCase() === appFilter) &&
+            (noteFilter === '' || row.note.toUpperCase() === noteFilter)
+          );
+        });
+
+        updateDropdowns(filteredData);
+        populateTableRows(filteredData);
+      }
+
+      function updateDropdowns(filteredData) {
+        const industrySet = new Set(filteredData.map((row) => row.industry));
+        const appSet = new Set(filteredData.map((row) => row.app));
+        const noteSet = new Set(filteredData.map((row) => row.note));
+
+        updateDropdown(
+          'industry-filter',
+          industrySet,
+          document.getElementById('industry-filter').value
+        );
+        updateDropdown(
+          'app-filter',
+          appSet,
+          document.getElementById('app-filter').value
+        );
+        updateDropdown(
+          'note-filter',
+          noteSet,
+          document.getElementById('note-filter').value
+        );
+      }
+
+      function updateDropdown(dropdownId, items, selectedValue) {
+        const dropdown = document.getElementById(dropdownId);
+        const currentValue = selectedValue;
+        dropdown.length = 1;
+        items.forEach((item) => {
+          const option = document.createElement('option');
+          option.value = option.textContent = item;
+          if (item === currentValue) {
+            option.selected = true;
+          }
+          dropdown.appendChild(option);
+        });
+      }
+
+      function populateTableRows(filteredData) {
+        const tableBody = document.querySelector('#data-table tbody');
+        clearTableRows();
+        filteredData.forEach((row) => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+      <td>${row.industry}</td>
+      <td>${row.app}</td>
+      <td>${row.note}</td>
+    `;
+          tableBody.appendChild(tr);
+        });
+      }
+
+      function clearTableRows() {
+        const tableBody = document.querySelector('#data-table tbody');
+        while (tableBody.firstChild) {
+          tableBody.removeChild(tableBody.firstChild);
+        }
+      }
+
+      document
+        .getElementById('industry-filter')
+        .addEventListener('change', filterTable);
+      document
+        .getElementById('app-filter')
+        .addEventListener('change', filterTable);
+      document
+        .getElementById('note-filter')
+        .addEventListener('change', filterTable);
+    </script>
+  </body>
+</html>
