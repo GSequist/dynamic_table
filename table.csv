@@ -1,36 +1,36 @@
 industry,app,note
-Across All,"Back-office ""Forever"" Analyst","Application that helps with processing internal data from various documents / data sources and fill tables, documents and provide conclusions:
+All Industries,"Back-office ""Forever"" Analyst","Application that helps with processing internal data from various documents / data sources and fill tables, documents and provide conclusions:
 
 -review of past accounting records and answering questions for auditors
 -review past historic metadata and answer questions
 -help filling out excels based on other data 
 -help generating very specific documents in their template under their brand based on any information the AI has access to"
-Across All,Internal Knowledge Management,"Application that compresses all internal knowledge spread acros confluence, private cloud, mainframe, thousands of documents into a small answering box:
+All Industries,Internal Knowledge Management,"Application that compresses all internal knowledge spread acros confluence, private cloud, mainframe, thousands of documents into a small answering box:
 
 -employees have all previous experience at the tip of their fingers
 -sprint to professional go
 -forgotten knowledge re-discovered
 -much enhanced quality of future documents ,materials, presentations, other deliverables"
-Across All,Key Personnel Lookup,"Fed with a directory and past work experience of all employees across and enterprise, the application immediately responds suggesting the best possible person to go to:
+All Industries,Key Personnel Lookup,"Fed with a directory and past work experience of all employees across and enterprise, the application immediately responds suggesting the best possible person to go to:
 
 ""who has worked on process x,y,z in past""
 ""who can code in python""
 who was on last year's audit"""
-Across All,External Knowledge Management,"Application that is fed external laws, regulations, standards relevant for a particular business / industry to instantly explain answer questions to employees."
-Across All,GPT4 level chatbot,GPT4 level human intelligence chatbot on website or in app with access to tools like product cataloge and more
-Across All,Sentiment Analysis,"Application that is fetching vast data from social media and other sources (news articles) and assessing sentiment from the perspective of the brand / a company.
+All Industries,External Knowledge Management,"Application that is fed external laws, regulations, standards relevant for a particular business / industry to instantly explain answer questions to employees."
+All Industries,GPT4 level chatbot,GPT4 level human intelligence chatbot on website or in app with access to tools like product cataloge and more
+All Industries,Sentiment Analysis,"Application that is fetching vast data from social media and other sources (news articles) and assessing sentiment from the perspective of the brand / a company.
 
 Higher level analysis based on the granular analysis above for the top management to have a bird view of."
-Across All,GPT4 Regulatory / Legal Analyst,Application ingesting applicable legislation from online databank + any public regulation if applicable to a particular company and answering questions and solving internal company questions on the fly
-Across All,Integration of GPT4 into existing software / infrastructure,"Most people think of chatbots but this is passe. 2024 will see more ways of making GPT4 invisible making work in the background.
+All Industries,GPT4 Regulatory / Legal Analyst,Application ingesting applicable legislation from online databank + any public regulation if applicable to a particular company and answering questions and solving internal company questions on the fly
+All Industries,Integration of GPT4 into existing software / infrastructure,"Most people think of chatbots but this is passe. 2024 will see more ways of making GPT4 invisible making work in the background.
 
 This will strongly depend on client and industry but examples:
 
 -internal accounting system shared among several employees maintained edited by GPT4
 -automaton that is reviewing CVs / CLs and summarizing candidates and selecting for HR
 -project management (our squadcheck) GPT4 is retrieving info about people and their utilization and suggesting to manager who what"
-Across All,GPT4 Training Generator,App goes through boring internal documents and generates onboarding / employee training material &/or then trains based upon via discussion + voice.
-Across All,Document Generator,"Despite MS Copilot, there will be need for very tailored custom solution where for example Audi has an app that uses their pptx template and generates immaculate presentation on various topics as requested + leveraging internal information."
+All Industries,GPT4 Training Generator,App goes through boring internal documents and generates onboarding / employee training material &/or then trains based upon via discussion + voice.
+All Industries,Document Generator,"Despite MS Copilot, there will be need for very tailored custom solution where for example Audi has an app that uses their pptx template and generates immaculate presentation on various topics as requested + leveraging internal information."
 Food,Personalized Marketing,"Tailors promotions based on customer preferences, purchase history, and behavior. Enhances customer engagement and drives sales through personalized offers and recommendations."
 Food,Nutritional Analysis,Analyzes food composition and nutritional content to meet industry standards and consumer expectations.
 Automotive,Predictive Maintenance,"Anticipates maintenance needs by analyzing sensor data and machine learning algorithms. Helps prevent breakdowns, extend equipment lifespan, and reduce maintenance costs."
