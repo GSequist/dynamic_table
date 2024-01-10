@@ -57,3 +57,6 @@ Travel,GPT4 Booking App,GPT4 Application that a customer chats with and it books
 Education,Adaptive Learning,"Personalizes educational content and assessments for students, improving learning outcomes and engagement."
 Education,Student Performance Analytics,Analyzes student data to identify at-risk students and tailor interventions to improve academic success rates.
 Education,Virtual Classrooms,"Provides virtual classrooms and online education platforms, enabling remote learning and education accessibility."
+Real Estate,Property Maintenance GPT4 Chatbot,"Tenants can report maintenance issues through a natural language interface, and GPT-4 can categorize and prioritize these requests, even contacting service providers automatically."
+Real Estate,First-Level Legal Assistant,"Like lexion.ai but with focus on particular client and e.g. past contracts the application will help draft, understand and narrate legal contracts for advisors."
+Real Estate,Leads GPT4 Manager,"App interacts with potential leads, qualifies them based on their preferences and budget, and routes them to the appropriate agent or property listing."
